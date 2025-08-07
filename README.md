@@ -1,35 +1,41 @@
 # Flask Encrypted File App
 
-This project is a Flask application that allows users to upload files, which are then encrypted and stored securely. Users can also download and decrypt these files. 
+This project is a Flask application that allows users to upload files, which are then encrypted and stored securely. Users can also download and decrypt these files.
 
 ## Project Structure
 
 ```
-flask_encrypted_file_app
-├── app.py                # Main application file
-├── key.key               # Encryption key for file encryption/decryption
-├── requirements.txt      # List of dependencies
-├── uploads               # Directory for storing uploaded and encrypted files
-├── templates
-│   └── index.html       # HTML template for the upload form
-├── .gitignore            # Files and directories to ignore in Git
-└── README.md             # Project documentation
+Sharing-a-secure-file/
+├── app.py
+├── key.key
+├── requirements.txt
+├── uploads/
+├── templates/
+│   ├── index.html
+│   └── login.html
+├── static/
+│   └── style.css
+├── README.md
+└── .gitignore
 ```
 
-## Requirements
+## How to Clone the Project
 
-To run this project, you need to have Python installed. You can install the required packages using the following command:
+To get started, clone the repository to your local machine:
 
 ```
-pip install -r requirements.txt
+git clone https://github.com/sanmarkos/Sharing-a-secure-file.git
+cd Sharing-a-secure-file
 ```
 
-## Setup
+## How to Run
 
-1. Clone the repository to your local machine.
-2. Navigate to the project directory.
-3. Generate an encryption key using the following Python code:
+1. Install dependencies:
+   ```
+pip install flask cryptography
+```
 
+2. Generate a Fernet key:
    ```python
    from cryptography.fernet import Fernet
    key = Fernet.generate_key()
@@ -37,17 +43,16 @@ pip install -r requirements.txt
        key_file.write(key)
    ```
 
-4. Make sure the `uploads` directory exists. If not, create it.
+3. Start the app:
+   ```
+   python app.py
+   ```
 
-## Running the Application
+4. Open your browser at `http://127.0.0.1:5000`
 
-To start the Flask application, run the following command:
-
-```
-python app.py
-```
-
-The application will be accessible at `http://127.0.0.1:5000/`.
+**Default login credentials:**
+- Username: `admin`
+- Password: `password`
 
 ## Usage
 
