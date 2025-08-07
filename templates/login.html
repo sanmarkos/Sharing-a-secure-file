@@ -2,24 +2,35 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h2>Login</h2>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-        {% for message in messages %}
-          <li style="color:red;">{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-    <form method="post">
-        <label>Username:</label>
-        <input type="text" name="username" required><br>
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
-        <input type="submit" value="Login">
-    </form>
+    <div class="container">
+        <h2>Login</h2>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li style="color:red;">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <form method="post">
+            <label class="login-label">Username:</label>
+            <input type="text" name="username" required>
+            <label class="login-label">Password:</label>
+            <input type="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <script>
+        // Fade in effect for login page
+        document.body.style.opacity = 0;
+        document.body.style.transition = 'opacity 0.7s';
+        window.onload = function() {
+            document.body.style.opacity = 1;
+        };
+        </script>
+    </div>
 </body>
 </html>

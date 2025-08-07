@@ -4,27 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encrypted File Upload</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Upload File</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" required>
-        <input type="submit" value="Upload">
+    <form action="/logout" method="post" style="position:fixed;top:18px;right:28px;z-index:1000;">
+        <button class="logout-btn-top">Logout</button>
     </form>
-
-    <h2>Uploaded Files</h2>
-    <ul>
-        {% for file in files %}
-            <li>
-                {{ file }}
-                [<a href="{{ url_for('download_file', filename=file) }}">Download</a>]
-                <form action="{{ url_for('delete_file', filename=file) }}" method="post" style="display:inline;">
-                    <button type="submit" onclick="return confirm('Are you sure you want to delete this file?');">Delete</button>
-                </form>
-            </li>
-        {% else %}
-            <li>No files uploaded.</li>
-        {% endfor %}
-    </ul>
+    <div class="main-split">
+        <div class="glass-box">
+            <h1>Upload File</h1>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+        <div class="glass-box">
+            <h2>Uploaded Files</h2>
+            <ul>
+                {% for file in files %}
+                    <li style="flex-direction: column; align-items: flex-start;">
+                        <span>{{ file }}</span>
+                        <div class="file-actions">
+                            <a class="action-btn" href="{{ url_for('download_file', filename=file) }}">Download</a>
+                            <form action="{{ url_for('delete_file', filename=file) }}" method="post" style="display:inline;">
+                                <button type="submit" class="action-btn" onclick="return confirm('Are you sure you want to delete this file?');">Delete</button>
+                            </form>
+                        </div>
+                    </li>
+                {% else %}
+                    <li>No files uploaded.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <script>
+    // Fade out animation on logout
+    document.querySelectorAll('.logout-btn-top').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            document.body.style.transition = 'opacity 0.5s';
+            document.body.style.opacity = 0;
+        });
+    });
+    </script>
 </body>
 </html>
