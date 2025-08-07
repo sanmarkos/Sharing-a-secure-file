@@ -32,8 +32,8 @@ cd Sharing-a-secure-file
 
 1. Install dependencies:
    ```
-pip install flask cryptography
-```
+   pip install flask cryptography
+   ```
 
 2. Generate a Fernet key:
    ```python
